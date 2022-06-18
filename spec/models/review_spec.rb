@@ -2,12 +2,22 @@ describe Review do
   let(:review) { Review.first }
 
   before do
-    game = Game.create(title: "Mario Kart", platform: "Switch", genre: "Racing", price: 60)
+    game =
+      Game.create(
+        title: "Mario Kart",
+        platform: "Switch",
+        genre: "Racing",
+        price: 60
+      )
     Review.create(score: 8, comment: "A classic", game_id: game.id)
   end
-  
+
   it "has the correct columns in the reviews table" do
-    expect(review).to have_attributes(score: 8, comment: "A classic", game_id: Game.first.id)
+    expect(review).to have_attributes(
+      score: 8,
+      comment: "A classic",
+      game_id: Game.first.id
+    )
   end
 
   it "knows about its associated game" do
@@ -19,7 +29,7 @@ describe Review do
   it "can create an associated game using the game instance" do
     game = Game.first
     review = Review.create(score: 10, comment: "10 stars", game: game)
-    
+
     expect(review.game).to eq(game)
   end
 
@@ -30,5 +40,4 @@ describe Review do
       review.save
     end.to change(Game, :count).by(1)
   end
- 
 end

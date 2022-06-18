@@ -192,7 +192,6 @@ Our `Review` class is set up in `app/models/review.rb`. Notice that it inherits 
 
 ```rb
 class Review < ActiveRecord::Base
-
 end
 ```
 
@@ -240,7 +239,6 @@ class Review < ActiveRecord::Base
     # self is the review instance
     Game.find(self.game_id)
   end
-
 end
 ```
 
@@ -316,7 +314,6 @@ Our `Game` class is set up in `app/models/game.rb`. We need to tell the
 ```rb
 class Game < ActiveRecord::Base
   has_many :reviews
-
 end
 ```
 
@@ -342,11 +339,9 @@ something like this:
 
 ```rb
 class Game < ActiveRecord::Base
-
   def reviews
     Review.where(game_id: self.id)
   end
-
 end
 ```
 
